@@ -2,12 +2,12 @@ import { ChevronLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { UserAuthForm } from "@/components/user-auth-form";
 import { cn } from "@/lib/utils";
+import { SignupForm } from "@/components/auth/signup-form";
 
 export const metadata: Metadata = {
-    title: "Sign Up | Nyxb UI",
-    description: "Sign Up for Nyxb UI"
+    title: "Sign Up | JKPCL",
+    description: "Sign Up for JKPCL",
 };
 
 export default function SignUpPage() {
@@ -29,16 +29,16 @@ export default function SignUpPage() {
                 <div className="flex flex-col gap-2 text-center">
                     {/* <Icons.logo className="mx-auto h-6 w-6" /> */}
                     <h1 className="text-2xl font-semibold tracking-tight">
-                        Welcome to Nyxb UI
+                        Welcome to JKPCL
                     </h1>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-sm text-muted-foreground">
                         Sign up for an account
                     </p>
                 </div>
-                <UserAuthForm />
-                <p className="text-muted-foreground px-8 text-center text-sm">
+                <SignupForm />
+                <p className="px-8 text-center text-sm text-muted-foreground">
                     <Link
-                        href="/signin"
+                        href="/auth/signin"
                         className="hover:text-brand underline underline-offset-4"
                     >
                         Already have an account? Sign In

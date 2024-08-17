@@ -5,50 +5,55 @@ import "./globals.css";
 
 import { ThemeProvider } from "@/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
 
 export const metadata: Metadata = {
     metadataBase: new URL(
         process.env.APP_URL
             ? `${process.env.APP_URL}`
             : process.env.VERCEL_URL
-            ? `https://${process.env.VERCEL_URL}`
-            : `http://localhost:${process.env.PORT || 3000}`
+              ? `https://${process.env.VERCEL_URL}`
+              : `http://localhost:${process.env.PORT || 3000}`
     ),
     title: "jkpcl",
     description: "An agricultural solution to empower the farmers.",
     alternates: {
-        canonical: "/"
+        canonical: "/",
     },
     openGraph: {
         url: "/",
         title: "jkpcl",
         description: "An agricultural solution to empower the farmers.",
-        type: "website"
+        type: "website",
     },
     twitter: {
         card: "summary_large_image",
         title: "jkpcl",
-        description: "An agricultural solution to empower the farmers."
-    }
+        description: "An agricultural solution to empower the farmers.",
+    },
 };
 
-export default function RootLayout({
-    children
+export default async function RootLayout({
+    children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const session = await auth();
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={GeistSans.className}>
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="dark"
-                    disableTransitionOnChange
-                >
-                    {children}
-                    <Toaster />
-                </ThemeProvider>
-            </body>
+            <SessionProvider session={session}>
+                <body className={GeistSans.className}>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="dark"
+                        disableTransitionOnChange
+                    >
+                        {children}
+                        <Toaster />
+                    </ThemeProvider>
+                </body>
+            </SessionProvider>
         </html>
     );
 }

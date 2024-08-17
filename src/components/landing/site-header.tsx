@@ -7,75 +7,78 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { ModeToggle } from "../mode-toggle";
+import { useCurrentUser } from "@/hooks/use-user";
+import { UserButton } from "../auth/user-button";
 
 const menuItem = [
     {
         id: 1,
         label: "Features",
-        href: "/features"
+        href: "/features",
     },
     {
         id: 2,
         label: "Pricing",
-        href: "#"
+        href: "#",
     },
     {
         id: 3,
         label: "Careers",
-        href: "#"
+        href: "#",
     },
     {
         id: 4,
         label: "Contact Us",
-        href: "#"
-    }
+        href: "#",
+    },
 ];
 
 export function SiteHeader() {
+    const currentUser = useCurrentUser();
     const mobilenavbarVariant = {
         initial: {
             opacity: 0,
-            scale: 1
+            scale: 1,
         },
         animate: {
             scale: 1,
             opacity: 1,
             transition: {
                 duration: 0.2,
-                ease: "easeOut"
-            }
+                ease: "easeOut",
+            },
         },
         exit: {
             opacity: 0,
             transition: {
                 duration: 0.2,
                 delay: 0.2,
-                ease: "easeOut"
-            }
-        }
+                ease: "easeOut",
+            },
+        },
     };
 
     const mobileLinkVar = {
         initial: {
             y: "-20px",
-            opacity: 0
+            opacity: 0,
         },
         open: {
             y: 0,
             opacity: 1,
             transition: {
                 duration: 0.3,
-                ease: "easeOut"
-            }
-        }
+                ease: "easeOut",
+            },
+        },
     };
 
     const containerVariants = {
         open: {
             transition: {
-                staggerChildren: 0.06
-            }
-        }
+                staggerChildren: 0.06,
+            },
+        },
     };
 
     const [hamburgerMenuIsOpen, setHamburgerMenuIsOpen] = useState(false);
@@ -101,27 +104,32 @@ export function SiteHeader() {
 
     return (
         <>
-            <header className="animate-fade-in fixed left-0 top-0 z-50 w-full -translate-y-4 border-b opacity-0 backdrop-blur-md [--animation-delay:600ms]">
+            <header className="fixed left-0 top-0 z-50 w-full -translate-y-4 animate-fade-in border-b opacity-0 backdrop-blur-md [--animation-delay:600ms]">
                 <div className="container flex h-14 items-center justify-between">
                     <Link className="text-md flex items-center" href="/">
                         JKPCL
                     </Link>
 
-                    <div className="ml-auto flex h-full items-center">
-                        <Link className="mr-6 text-sm" href="/signin">
-                            Log in
-                        </Link>
-                        <Link
-                            className={cn(
-                                buttonVariants({ variant: "secondary" }),
-                                "mr-6 text-sm"
-                            )}
-                            href="/signup"
-                        >
-                            Sign up
-                        </Link>
-                        <ModeToggle />
-                    </div>
+                    {currentUser ? (
+                        <UserButton />
+                    ) : (
+                        <div className={cn("ml-auto flex h-full items-center")}>
+                            <Link className="mr-6 text-sm" href="/auth/signin">
+                                Log in
+                            </Link>
+                            <Link
+                                className={cn(
+                                    buttonVariants({ variant: "secondary" }),
+                                    "mr-6 text-sm"
+                                )}
+                                href="/auth/signup"
+                            >
+                                Sign up
+                            </Link>
+                            <ModeToggle />
+                        </div>
+                    )}
+
                     <button
                         className="ml-6 md:hidden"
                         onClick={() => setHamburgerMenuIsOpen((open) => !open)}
@@ -138,15 +146,15 @@ export function SiteHeader() {
                     variants={mobilenavbarVariant}
                     animate={hamburgerMenuIsOpen ? "animate" : "exit"}
                     className={cn(
-                        `bg-background/70 fixed left-0 top-0 z-50 h-screen w-full overflow-auto backdrop-blur-md `,
+                        `fixed left-0 top-0 z-50 h-screen w-full overflow-auto bg-background/70 backdrop-blur-md`,
                         {
-                            "pointer-events-none": !hamburgerMenuIsOpen
+                            "pointer-events-none": !hamburgerMenuIsOpen,
                         }
                     )}
                 >
                     <div className="container flex h-14 items-center justify-between">
                         <Link className="text-md flex items-center" href="/">
-                            Nyxb UI
+                            JKPCL
                         </Link>
 
                         <button

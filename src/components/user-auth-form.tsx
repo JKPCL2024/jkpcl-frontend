@@ -13,14 +13,14 @@ import {
     FormControl,
     FormField,
     FormItem,
-    FormMessage
+    FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { buttonVariants } from "@/components/ui/button";
 
 export const userAuthSchema = z.object({
     email: z.string().email(),
-    password: z.string().optional()
+    password: z.string().optional(),
 });
 type FormData = z.infer<typeof userAuthSchema>;
 
@@ -30,8 +30,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     const form = useForm<FormData>({
         resolver: zodResolver(userAuthSchema),
         defaultValues: {
-            email: ""
-        }
+            email: "",
+        },
     });
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const [isGitHubLoading, setIsGitHubLoading] =
@@ -48,13 +48,13 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
         if (!signInResult?.ok) {
             return toast.error("Something went wrong.", {
-                description: "Your sign in request failed. Please try again."
+                description: "Your sign in request failed. Please try again.",
             });
         }
 
         return toast.success("Check your email", {
             description:
-                "We sent you a login link. Be sure to check your spam too."
+                "We sent you a login link. Be sure to check your spam too.",
         });
     }
 
@@ -62,7 +62,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         setIsGitHubLoading(true);
         // TODO: Add signin using preferred provider
         await new Promise((resolve) => setTimeout(resolve, 1000));
-        toast.success("Signing in...");
+        toast.success("Signin successful");
         setIsGitHubLoading(false);
     }
 
@@ -118,7 +118,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                     <span className="w-full border-t" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-background text-muted-foreground px-2">
+                    <span className="bg-background px-2 text-muted-foreground">
                         Or continue with
                     </span>
                 </div>

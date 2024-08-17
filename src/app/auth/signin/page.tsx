@@ -2,12 +2,12 @@ import { ChevronLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { UserAuthForm } from "@/components/user-auth-form";
+import { SigninForm } from "@/components/auth/signin-form";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-    title: "Login | Nyxb UI",
-    description: "Login to your account"
+    title: "Login | JKPCL",
+    description: "Login to your account",
 };
 
 export default function LoginPage() {
@@ -31,14 +31,14 @@ export default function LoginPage() {
                     <h1 className="text-2xl font-semibold tracking-tight">
                         Welcome back
                     </h1>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-sm text-muted-foreground">
                         Login to your account
                     </p>
                 </div>
-                <UserAuthForm />
-                <p className="text-muted-foreground px-8 text-center text-sm">
+                <SigninForm />
+                <p className="px-8 text-center text-sm text-muted-foreground">
                     <Link
-                        href="/signup"
+                        href="/auth/signup"
                         className="hover:text-brand underline underline-offset-4"
                     >
                         Don&apos;t have an account? Sign Up
