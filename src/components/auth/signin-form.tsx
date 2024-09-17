@@ -18,9 +18,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { LoginSchema } from "@/schemas";
+import { LoginSchema } from "@/lib/validators";
 import { SocialSignIn } from "./social-signin";
-import { login } from "@/actions/login";
+import { login } from "@/actions/auth/login";
 import { useSearchParams } from "next/navigation";
 
 type FormData = z.infer<typeof LoginSchema>;

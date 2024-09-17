@@ -1,11 +1,12 @@
 import {
-  Tag,
   Users,
   Settings,
-  Bookmark,
-  SquarePen,
   LayoutGrid,
-  LucideIcon
+  LucideIcon,
+  NotebookPen,
+  Newspaper,
+  User,
+  Images
 } from "lucide-react";
 
 type Submenu = {
@@ -27,15 +28,15 @@ type Group = {
   menus: Menu[];
 };
 
-export function getMenuList(pathname: string): Group[] {
+export function getUserMenuList(pathname: string): Group[] {
   return [
     {
       groupLabel: "",
       menus: [
         {
-          href: "/dashboard",
+          href: "/dashboard/user",
           label: "Dashboard",
-          active: pathname.includes("/dashboard"),
+          active: pathname.includes("/dashboard/user"),
           icon: LayoutGrid,
           submenus: []
         }
@@ -46,52 +47,149 @@ export function getMenuList(pathname: string): Group[] {
       menus: [
         {
           href: "",
-          label: "Posts",
-          active: pathname.includes("/posts"),
-          icon: SquarePen,
+          label: "Members",
+          active: pathname.includes("/dashboard/user/members"),
+          icon: Users,
           submenus: [
             {
-              href: "/posts",
-              label: "All Posts",
-              active: pathname === "/posts"
+              href: "/dashboard/user/members",
+              label: "All Members",
+              active: pathname === "/dashboard/user/members"
             },
             {
-              href: "/posts/new",
-              label: "New Post",
-              active: pathname === "/posts/new"
+              href: "/dashboard/user/members/new",
+              label: "New Member",
+              active: pathname === "/dashboard/user/members/new"
             }
           ]
         },
         {
-          href: "/categories",
-          label: "Categories",
-          active: pathname.includes("/categories"),
-          icon: Bookmark,
-          submenus: []
+          href: "",
+          label: "Notices",
+          active: pathname.includes("/dashboard/user/notices"),
+          icon: NotebookPen,
+          submenus: [
+            {
+              href: "/dashboard/user/notices",
+              label: "All Notices",
+              active: pathname === "/dashboard/user/notices"
+            },
+            {
+              href: "/dashboard/user/notices/new",
+              label: "New Notice",
+              active: pathname === "/dashboard/user/notices/new"
+            }
+          ]
         },
         {
-          href: "/tags",
-          label: "Tags",
-          active: pathname.includes("/tags"),
-          icon: Tag,
+          href: "",
+          label: "Stories",
+          active: pathname.includes("/dashboard/user/stories"),
+          icon: Newspaper,
+          submenus: [
+            {
+              href: "/dashboard/user/stories",
+              label: "All Stories",
+              active: pathname === "/dashboard/user/stories"
+            },
+            {
+              href: "/dashboard/user/stories/new",
+              label: "New Story",
+              active: pathname === "/dashboard/user/stories/new"
+            }
+          ]
+        },
+        {
+          href: "/dashboard/user/gallery",
+          label: "Gallery",
+          active: pathname.includes("/dashboard/user/gallery"),
+          icon: Images,
           submenus: []
-        }
+        },
       ]
     },
     {
       groupLabel: "Settings",
       menus: [
         {
-          href: "/users",
-          label: "Users",
-          active: pathname.includes("/users"),
+          href: "/dashboard/admin/users",
+          label: "Profile",
+          active: pathname.includes("/dashboard/admin/users"),
+          icon: User,
+          submenus: []
+        },
+        {
+          href: "/dashboard/admin/account",
+          label: "Account",
+          active: pathname.includes("/dashboard/admin/account"),
+          icon: Settings,
+          submenus: []
+        }
+      ]
+    }
+  ];
+}
+export function getAdminMenuList(pathname: string): Group[] {
+  return [
+    {
+      groupLabel: "",
+      menus: [
+        {
+          href: "/dashboard/admin",
+          label: "Dashboard",
+          active: pathname.includes("/dashboard/admin"),
+          icon: LayoutGrid,
+          submenus: []
+        }
+      ]
+    },
+    {
+      groupLabel: "Contents",
+      menus: [
+        {
+          href: "/dashboard/admin/members",
+          label: "Members",
+          active: pathname.includes("/dashboard/admin/members"),
           icon: Users,
           submenus: []
         },
         {
-          href: "/account",
+          href: "/dashboard/admin/notices",
+          label: "Notices",
+          active: pathname.includes("/dashboard/admin/notices"),
+          icon: NotebookPen,
+          submenus: []
+        },
+        {
+          href: "/dashboard/admin/stories",
+          label: "Stories",
+          active: pathname.includes("/dashboard/admin/stories"),
+          icon: Newspaper,
+          submenus: []
+        },
+        {
+          href: "/dashboard/admin/gallery",
+          label: "Gallery",
+          active: pathname.includes("/dashboard/admin/gallery"),
+          icon: Images,
+          submenus: []
+        },
+      ]
+    },
+    {
+      groupLabel: "Settings",
+      menus: [
+        {
+          href: "/dashboard/admin/users",
+          label: "Profile",
+          active: pathname.includes("/dashboard/admin/users"),
+          icon: User,
+          submenus: []
+        },
+        {
+          href: "/dashboard/admin/account",
           label: "Account",
-          active: pathname.includes("/account"),
+          active: pathname.includes("/dashboard/admin/account"),
           icon: Settings,
           submenus: []
         }

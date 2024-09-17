@@ -1,9 +1,15 @@
-import AdminPanelLayout from "@/components/admin-panel/admin-panel-layout";
+import { LayoutProps } from "@/types";
+import { SiteHeader } from "./_components/site-header";
+import { SiteFooter } from "./_components/site-footer";
 
-export default function DemoLayout({
-  children
-}: {
-  children: React.ReactNode;
-}) {
-  return <AdminPanelLayout>{children}</AdminPanelLayout>;
-}
+const HomeLayout = ({ children }: LayoutProps) => {
+    return (
+        <>
+            <SiteHeader />
+            {children}
+            <SiteFooter />
+        </>
+    );
+};
+
+export default HomeLayout;

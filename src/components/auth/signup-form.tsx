@@ -17,8 +17,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { RegisterSchema } from "@/schemas";
-import { register } from "@/actions/register";
+import { RegisterSchema } from "@/lib/validators";
+import { register } from "@/actions/auth/register";
 import { SocialSignIn } from "./social-signin";
 
 type FormData = z.infer<typeof RegisterSchema>;

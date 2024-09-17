@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+:root {
+    height: 100%;
+}
+
 @layer base {
     :root {
         --background: 0 0% 100%;
@@ -32,7 +38,8 @@
 
         /* Custom properties */
         --navigation-height: 3.5rem;
-        --color-one: #ffbd7a;
+        /* --color-one: #ffbd7a; */
+        --color-one: #c2f09f;
         --color-two: #fe8bbb;
         --color-three: #9e7aff;
     }

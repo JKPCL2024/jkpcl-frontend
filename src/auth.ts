@@ -2,10 +2,10 @@ import NextAuth from "next-auth";
 import authConfig from "@/auth.config";
 import { db } from '@/lib/db';
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { getUserById } from "@/helpers/user";
+import { getUserById } from "@/lib/helpers/user";
 import { UserRole } from "@prisma/client";
-import { getTwoFactorConfirmationByUserId } from "@/helpers/two-factor-confirmation";
-import { getAccountByUserId } from "@/helpers/account";
+import { getTwoFactorConfirmationByUserId } from "@/lib/helpers/two-factor-confirmation";
+import { getAccountByUserId } from "@/lib/helpers/account";
 
 export const {
     handlers,

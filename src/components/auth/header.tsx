@@ -1,6 +1,7 @@
 import { Poppins } from "next/font/google";
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const font = Poppins({
     subsets: ["latin"],
@@ -8,16 +9,18 @@ const font = Poppins({
 });
 
 interface HeaderProps {
+    heading: string;
     label: string;
 }
 
-export const Header = ({ label }: HeaderProps) => {
+export const Header = ({ heading, label }: HeaderProps) => {
     return (
-        <div className="w-full flex flex-col items-center gap-y-4">
+        <div className="flex w-full flex-col items-center gap-y-4">
+            <Image src={"/logo.png"} height={40} width={40} alt="Logo" />
             <h1 className={cn("text-3xl font-semibold", font.className)}>
-                🔐 Auth
+                {heading}
             </h1>
-            <p className="text-muted-foreground text-sm">{label}</p>
+            <p className="text-sm text-muted-foreground">{label}</p>
         </div>
     );
 };

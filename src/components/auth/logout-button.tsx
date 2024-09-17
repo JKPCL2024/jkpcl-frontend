@@ -1,19 +1,17 @@
 "use client";
 
-import { logout } from "@/actions/logout";
+import { logout } from "@/actions/auth/logout";
+import { Button } from "@/components/ui/button";
 
-interface LogoutButtonProps {
-    children?: React.ReactNode;
-}
-
-export const LogoutButton = ({ children }: LogoutButtonProps) => {
-    const onClick = () => {
-        logout();
-    };
-
+export function LogoutButton({ children }: { children: React.ReactNode }) {
     return (
-        <span onClick={onClick} className="cursor-pointer">
+        <Button
+            onClick={() => logout()}
+            variant={"secondary"}
+            className="w-full hover:bg-primary"
+            asChild
+        >
             {children}
-        </span>
+        </Button>
     );
-};
+}

@@ -1,9 +1,10 @@
 import { ChevronLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { SigninForm } from "@/components/auth/signin-form";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export const metadata: Metadata = {
     title: "Login | JKPCL",
@@ -25,10 +26,15 @@ export default function LoginPage() {
                     Back
                 </>
             </Link>
-            <div className="mx-auto flex w-full flex-col justify-center gap-6 sm:w-[350px]">
-                <div className="flex flex-col gap-2 text-center">
-                    {/* <Icons.logo className="mx-auto h-6 w-6" /> */}
-                    <h1 className="text-2xl font-semibold tracking-tight">
+            <div className="mx-auto flex w-full flex-col justify-center gap-6 sm:w-[22rem]">
+                <div className="flex flex-col items-center gap-2 text-center">
+                    <Image
+                        src={"/logo.png"}
+                        width={40}
+                        height={40}
+                        alt="Logo"
+                    />
+                    <h1 className="text-3xl font-semibold tracking-tight">
                         Welcome back
                     </h1>
                     <p className="text-sm text-muted-foreground">
@@ -36,14 +42,11 @@ export default function LoginPage() {
                     </p>
                 </div>
                 <SigninForm />
-                <p className="px-8 text-center text-sm text-muted-foreground">
-                    <Link
-                        href="/auth/signup"
-                        className="hover:text-brand underline underline-offset-4"
-                    >
+                <Button asChild variant={"link"}>
+                    <Link href="/auth/signup">
                         Don&apos;t have an account? Sign Up
                     </Link>
-                </p>
+                </Button>
             </div>
         </div>
     );

@@ -1,7 +1,8 @@
-import { ChevronLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
+import Image from "next/image";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { ChevronLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SignupForm } from "@/components/auth/signup-form";
 
@@ -26,8 +27,13 @@ export default function SignUpPage() {
                 </>
             </Link>
             <div className="mx-auto flex w-full flex-col justify-center gap-6 sm:w-[350px]">
-                <div className="flex flex-col gap-2 text-center">
-                    {/* <Icons.logo className="mx-auto h-6 w-6" /> */}
+                <div className="flex flex-col items-center gap-2 text-center">
+                    <Image
+                        src={"/logo.png"}
+                        width={40}
+                        height={40}
+                        alt="Logo"
+                    />
                     <h1 className="text-2xl font-semibold tracking-tight">
                         Welcome to JKPCL
                     </h1>
@@ -36,14 +42,11 @@ export default function SignUpPage() {
                     </p>
                 </div>
                 <SignupForm />
-                <p className="px-8 text-center text-sm text-muted-foreground">
-                    <Link
-                        href="/auth/signin"
-                        className="hover:text-brand underline underline-offset-4"
-                    >
+                <Button asChild variant={"link"}>
+                    <Link href="/auth/signin">
                         Already have an account? Sign In
                     </Link>
-                </p>
+                </Button>
             </div>
         </div>
     );

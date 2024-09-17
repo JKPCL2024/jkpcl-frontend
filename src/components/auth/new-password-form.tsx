@@ -22,8 +22,8 @@ import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 
-import { NewPasswordSchema } from "@/schemas";
-import { newPassword } from "@/actions/new-password";
+import { NewPasswordSchema } from "@/lib/validators";
+import { newPassword } from "@/actions/auth/new-password";
 
 export const NewPasswordForm = () => {
     const searchParams = useSearchParams();
@@ -52,6 +52,7 @@ export const NewPasswordForm = () => {
     };
     return (
         <CardWrapper
+            headerHeading="New Password"
             headerLabel="Enter a new password"
             backButtonLabel="Back to login"
             backButtonHref="/auth/signin"
