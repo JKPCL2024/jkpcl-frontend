@@ -5,6 +5,7 @@
  */
 export const publicRoutes: string[] = [
     "/",
+    "/about",
     "/auth/new-verification"
 ];
 
@@ -32,5 +33,5 @@ export const apiAuthPrefix: string = "/api/auth";
  * The default redirect path after logging in
  * @type {string}
  */
-export const DEFAULT_LOGIN_REDIRECT: string = "/dashboard";
+export const DEFAULT_ADMIN_LOGIN_REDIRECT: string = "/dashboard/admin";
 export const DEFAULT_LOGOUT_REDIRECT: string = "/";

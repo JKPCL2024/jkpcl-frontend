@@ -5,17 +5,15 @@ import { Heading } from "@/components/typography/heading";
 import { P } from "@/components/typography/p";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { HoverBorderGradient } from "@/components/shared/gradient-button";
+import { cn } from "@/lib/utils";
 
 export const About = () => {
     return (
         <Section className="mt-10">
-            <Button
-                variant={"outline"}
-                asChild
-                className="rounded-full text-primary"
-            >
-                <h4>About Us</h4>
-            </Button>
+            <HoverBorderGradient className="text-primary">
+                About Us
+            </HoverBorderGradient>
             <Heading className="mb-5 mt-2">Discover Our Story</Heading>
             <div className="flex flex-col gap-8 md:flex-row">
                 <Image
@@ -44,16 +42,19 @@ export const About = () => {
                         boost cost-effectiveness, ensuring a brighter future for
                         shareholders and the community.
                     </P>
-                    <Button
-                        asChild
-                        variant={"outline"}
-                        size={"sm"}
-                        className="w-32"
-                    >
-                        <Link href={"/about"}>
-                            Know more <ArrowRight className="size-5" />
-                        </Link>
-                    </Button>
+                    <Link href={"/about"}>
+                        <Button
+                            variant={"expandIcon"}
+                            Icon={ArrowRight}
+                            iconPlacement={"right"}
+                            IconClass="size-5 hover:text-white"
+                            className={cn(
+                                "w-32 border bg-secondary text-black hover:text-white dark:text-white"
+                            )}
+                        >
+                            Know more
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </Section>

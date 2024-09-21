@@ -1,24 +1,21 @@
+import { Heading } from "@/components/typography/heading";
+import { Section } from "@/components/section";
 import {
     Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
-import { Heading } from "@/components/typography/heading";
-import { Section } from "@/components/section";
+import { HoverBorderGradient } from "@/components/shared/gradient-button";
+
 import { faqs } from "@/data/landing-page/faqs";
 
 export const FAQs = () => {
     return (
-        <Section className="mt-12">
-            <Button
-                variant={"outline"}
-                asChild
-                className="rounded-full text-primary"
-            >
-                <h4>FAQs</h4>
-            </Button>
+        <Section id="faqs" className="mt-12">
+            <HoverBorderGradient className="text-primary">
+                FAQs
+            </HoverBorderGradient>
             <Heading className="my-2">Frequently Asked Questions</Heading>
             <div className="mt-4 w-full">
                 <Accordion

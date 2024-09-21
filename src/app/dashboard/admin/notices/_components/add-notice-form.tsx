@@ -89,7 +89,7 @@ export const AddNoticeForm = () => {
                                 <FormControl>
                                     <Input
                                         type="file"
-                                        accept="image/png, image/jpeg, image/jpg"
+                                        accept="application/pdf"
                                         {...fieldProps}
                                         onChange={(event) =>
                                             onChange(

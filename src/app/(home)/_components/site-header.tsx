@@ -32,10 +32,11 @@ export function SiteHeader() {
 
                     <div className="ml-auto flex h-full items-center gap-4">
                         {currentUser ? (
-                            <UserDropdown className="hidden md:flex" />
+                            // <UserDropdown className="hidden md:flex" />
+                            <></>
                         ) : (
                             <div className={cn("flex h-full items-center")}>
-                                <Link
+                                {/* <Link
                                     className="mr-6 text-sm"
                                     href="/auth/signin"
                                 >
@@ -51,7 +52,7 @@ export function SiteHeader() {
                                     href="/auth/signup"
                                 >
                                     Sign up
-                                </Link>
+                                </Link> */}
                             </div>
                         )}
                         <ModeToggle />

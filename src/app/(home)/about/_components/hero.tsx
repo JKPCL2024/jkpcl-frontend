@@ -1,6 +1,8 @@
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { HeroText } from "@/components/typography/hero-text";
 import { P } from "@/components/typography/p";
-import { Button } from "@/components/ui/button";
+import { HoverBorderGradient } from "@/components/shared/gradient-button";
 
 export const Hero = () => {
     return (
@@ -19,11 +21,7 @@ export const Hero = () => {
                     />
                 </div>
                 <div className="mx-auto max-w-2xl pb-12 pt-32 sm:py-48 lg:pb-20 lg:pt-36">
-                    <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-                        <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                            About Us
-                        </div>
-                    </div>
+                    <HoverBorderGradient>About Us</HoverBorderGradient>
                     <div className="text-center">
                         <HeroText>Empowering Farmers, Enriching Lives</HeroText>
                         <P className="mt-6">
@@ -34,14 +32,20 @@ export const Hero = () => {
                             farming communities.
                         </P>
                         <div className="mt-10 flex items-center justify-center gap-x-6">
-                            <Button className="font-medium tracking-wide">
-                                Become a shareholder
+                            <Button
+                                asChild
+                                className="font-medium tracking-wide"
+                            >
+                                <Link href={"/"}>Back to Home</Link>
                             </Button>
                             <Button
+                                asChild
                                 variant={"outline"}
                                 className="font-medium tracking-wide text-primary hover:text-primary"
                             >
-                                Explore Services
+                                <Link href={"/#services"}>
+                                    Explore Services
+                                </Link>
                             </Button>
                         </div>
                     </div>

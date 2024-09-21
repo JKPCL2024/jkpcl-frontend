@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useCurrentUser } from "@/lib/hooks/use-user";
 import { HeroText } from "@/components/typography/hero-text";
 import { P } from "@/components/typography/p";
+import { HoverBorderGradient } from "@/components/shared/gradient-button";
 
 export default function HeroSection() {
     const ref = useRef(null);
@@ -20,12 +21,7 @@ export default function HeroSection() {
             id="hero"
             className="relative mx-auto mt-32 max-w-7xl px-6 text-center md:px-8"
         >
-            <div className="backdrop-filter-[12px] group inline-flex h-7 -translate-y-4 animate-fade-in items-center justify-between gap-1 rounded-full border border-white/5 bg-white/10 px-3 text-xs text-white opacity-0 transition-all ease-in hover:cursor-pointer hover:bg-white/20 dark:text-black">
-                <TextShimmer className="inline-flex items-center justify-center">
-                    <span>👋Welcome to JKPCL</span>{" "}
-                    <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
-                </TextShimmer>
-            </div>
+            <HoverBorderGradient>👋Welcome to JKPCL</HoverBorderGradient>
             <HeroText>
                 Empowering Farmers
                 <br className="hidden md:block" /> for Sustainable Growth
@@ -42,10 +38,18 @@ export default function HeroSection() {
                 className="group -translate-y-4 animate-fade-in gap-1 rounded-lg text-white opacity-0 ease-in-out [--animation-delay:600ms] hover:cursor-pointer hover:bg-primary/90"
             >
                 {currentUser ? (
-                    <Link href={`/dashboard/${currentUser.role.toLowerCase()}`}>
-                        <span>Go to dashboard </span>
-                        <ArrowRightIcon className="ml-1 size-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
-                    </Link>
+                    // <Button
+                    //     Icon={ArrowRightIcon}
+                    //     iconPlacement="right"
+                    //     variant={"expandIcon"}
+                    // >
+                    //     <Link
+                    //         href={`/dashboard/${currentUser.role.toLowerCase()}`}
+                    //     >
+                    //         Go to dashboard
+                    //     </Link>
+                    // </Button>
+                <></>
                 ) : (
                     <Link href={"/auth/signup"}>
                         <span>Get Started for free </span>

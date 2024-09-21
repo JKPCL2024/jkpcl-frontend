@@ -4,7 +4,7 @@ import * as z from "zod";
 import { db } from "@/lib/db";
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
-import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
+import { DEFAULT_ADMIN_LOGIN_REDIRECT } from "@/routes";
 import { LoginSchema } from "@/lib/validators";
 import { getUserByEmail } from "@/lib/helpers/user";
 import { generateTwoFactorToken, generateVerificationToken } from "@/lib/tokens";
@@ -88,7 +88,7 @@ export const login = async (values: z.infer<typeof LoginSchema>, callbackUrl?: s
         await signIn("credentials", {
             email,
             password,
-            redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT
+            redirectTo: callbackUrl || DEFAULT_ADMIN_LOGIN_REDIRECT
         })
     } catch (error) {
         if (error instanceof AuthError) {

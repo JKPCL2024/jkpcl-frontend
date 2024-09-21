@@ -6,7 +6,7 @@ import { newVerification } from "@/actions/auth/new-verification";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
-import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
+import { DEFAULT_ADMIN_LOGIN_REDIRECT } from "@/routes";
 
 export const NewVerificationForm = () => {
     const searchParams = useSearchParams();
@@ -27,7 +27,7 @@ export const NewVerificationForm = () => {
                 setIsLoading(false);
                 if (data.success) {
                     toast.success(data.success);
-                    router.push(DEFAULT_LOGIN_REDIRECT);
+                    router.push(DEFAULT_ADMIN_LOGIN_REDIRECT);
                 }
                 if (data.error) {
                     toast.error(data.error);

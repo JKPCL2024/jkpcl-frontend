@@ -8,7 +8,7 @@ const About = () => {
         <main>
             <Hero />
             <MissionAndVision />
-            {/* <Team /> */}
+            <Team />
             <History />
         </main>
     );

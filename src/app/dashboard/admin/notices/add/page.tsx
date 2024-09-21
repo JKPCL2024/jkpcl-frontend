@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import PlaceholderContent from "@/components/demo/placeholder-content";
 import { ContentLayout } from "@/components/admin-panel/content-layout";
 import {
     Breadcrumb,
@@ -19,12 +18,12 @@ export default function NoticesPage() {
                 <BreadcrumbList>
                     <BreadcrumbItem>
                         <BreadcrumbLink asChild>
-                            <Link href="/dashboard/admin">Dashboard</Link>
+                            <Link href="/dashboard/admin/notices">Notices</Link>
                         </BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
-                        <BreadcrumbPage>Notices</BreadcrumbPage>
+                        <BreadcrumbPage>Add</BreadcrumbPage>
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>

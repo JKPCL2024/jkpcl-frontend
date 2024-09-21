@@ -45,15 +45,11 @@ export const AddMemberForm = () => {
         setIsSubmitting(true);
         const res = await fetch("/api/admin/members/add", {
             method: "POST",
-            // headers: {
-            //     "Content-Type": "multipart/form-data",
-            // },
             body: formData,
         });
 
         setIsSubmitting(false);
         const data = await res.json();
-        console.log(data);
 
         if (data.success) {
             toast.success(data.message);

@@ -1,21 +1,23 @@
 import { DiscordLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
+import { Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { FaFacebook } from "react-icons/fa";
 
 const footerNavs = [
     {
-        label: "Product",
+        label: "Important Links",
         items: [
             {
-                href: "/",
-                name: "Email Collection",
+                href: "/about",
+                name: "About Us",
             },
             {
-                href: "/pricing",
-                name: "Pricing",
+                href: "/#services",
+                name: "Services",
             },
             {
-                href: "/faq",
+                href: "/#faqs",
                 name: "FAQ",
             },
         ],
@@ -25,15 +27,12 @@ const footerNavs = [
         label: "Community",
         items: [
             {
-                href: "/",
-                name: "Discord",
+                href: "https://www.facebook.com/profile.php?id=100076275695203",
+                name: "Facebook",
             },
+
             {
-                href: "/",
-                name: "Twitter",
-            },
-            {
-                href: "mailto:hello@chatcollect.com",
+                href: "mailto:jkpcl@yahoo.com",
                 name: "Email",
             },
         ],
@@ -56,14 +55,14 @@ const footerNavs = [
 
 const footerSocials = [
     {
-        href: "",
-        name: "Discord",
-        icon: <DiscordLogoIcon className="size-4" />,
+        href: "https://www.facebook.com/profile.php?id=100076275695203",
+        name: "Facebook",
+        icon: <FaFacebook className="size-4" />,
     },
     {
-        href: "",
-        name: "Twitter",
-        icon: <TwitterLogoIcon className="size-4" />,
+        href: "mailto:jkpcl@yahoo.com",
+        name: "Email",
+        icon: <Mail className="size-4" />,
     },
 ];
 
@@ -117,6 +116,7 @@ export function SiteFooter() {
                             <Link
                                 key={social.name}
                                 href={social.href}
+                                target="_blank"
                                 className="fill-gray-500 text-gray-500 hover:fill-gray-900 hover:text-gray-900 dark:hover:fill-gray-600 dark:hover:text-gray-600"
                             >
                                 {social.icon}

@@ -41,6 +41,7 @@ model User {
   password              String?
   role                  UserRole               @default(USER)
   accounts              Account[]
+  Notices               Notice[]
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
 
@@ -82,11 +83,11 @@ model TwoFactorConfirmation {
 }
 
 model Member {
-  id            String  @id @default(cuid())
+  id            String @id @default(cuid())
   firstName     String
   lastName      String
   designation   String
-  email         String? @unique
+  email         String @unique
   mobile        String
   photoUrl      String
   photoPublicId String
@@ -96,9 +97,12 @@ model Member {
 }
 
 model Notice {
-  id    String @id @default(cuid())
-  title String
-  url   String
+  id        String  @id @default(cuid())
+  title     String
+  url       String
+  publicId  String
+  createdBy String?
+  user      User?   @relation(fields: [createdBy], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -1,4 +1,5 @@
-import PlaceholderContent from "@/components/demo/placeholder-content";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { ContentLayout } from "@/components/admin-panel/content-layout";
 import {
     Breadcrumb,
@@ -8,9 +9,7 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import Link from "next/link";
-import { Members } from "./_components/members";
-import { Button } from "@/components/ui/button";
+import { TeamMembers } from "@/components/shared/team-members";
 import { Plus } from "lucide-react";
 
 const MembersPage = () => {
@@ -37,10 +36,7 @@ const MembersPage = () => {
                     </Link>
                 </Button>
             </div>
-            <div>
-                <Members />
-            </div>
-            <PlaceholderContent />
+            <TeamMembers editable />
         </ContentLayout>
     );
 };
