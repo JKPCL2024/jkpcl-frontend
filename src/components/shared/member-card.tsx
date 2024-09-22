@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { Member } from "@prisma/client";
 import {
     Card,
     CardContent,
@@ -8,11 +10,19 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Edit, Mail, Phone } from "lucide-react";
+import { Edit, Mail, MoreVertical, Phone, Trash2 } from "lucide-react";
 import { copyToClipboard } from "@/lib/utils";
-import { Member } from "@prisma/client";
 import { Tooltip } from "@/components/shared/tooltip";
+import { useDeleteMember } from "@/lib/hooks/use-delete-member";
 
 export const MemberCard = ({
     member,
@@ -21,8 +31,13 @@ export const MemberCard = ({
     member: Member;
     editable?: boolean;
 }) => {
+    const { setMemberId, openModal } = useDeleteMember();
     const { id, firstName, lastName, email, designation, mobile, photoUrl } =
         member;
+    const handleDelete = () => {
+        openModal();
+        setMemberId(id);
+    };
     return (
         <Card className="relative flex w-72 flex-col items-center border bg-card/80 py-6 shadow-md">
             <CardHeader className="flex flex-col items-center">
@@ -78,14 +93,33 @@ export const MemberCard = ({
             </CardContent>
             {editable && (
                 <div className="absolute right-2 top-2">
-                    <Tooltip
-                        trigger={
-                            <Button size={"icon"}>
-                                <Edit />
-                            </Button>
-                        }
-                        content={<span>Edit Member</span>}
-                    />
+                    <DropdownMenu>
+                        <DropdownMenuTrigger>
+                            <Tooltip
+                                trigger={
+                                    <Button size={"icon"} variant={"ghost"}>
+                                        <MoreVertical className="size-5" />
+                                    </Button>
+                                }
+                                content={<span>More</span>}
+                            />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                            <DropdownMenuLabel>More Options</DropdownMenuLabel>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem asChild>
+                                <Link
+                                    href={`/dashboard/admin/members/edit/${id}`}
+                                >
+                                    <Edit className="mr-2 size-4" />
+                                    Edit
+                                </Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={handleDelete}>
+                                <Trash2 className="mr-2 size-4" /> Delete
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                 </div>
             )}
         </Card>

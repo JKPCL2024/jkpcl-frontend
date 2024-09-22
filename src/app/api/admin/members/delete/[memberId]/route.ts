@@ -1,6 +1,7 @@
 import { currentUser } from "@/lib/auth";
 import { deleteFromCloudinary } from "@/lib/cloudinary";
 import { db } from "@/lib/db";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(req: NextRequest, { params }: { params: { memberId: string } }) {
@@ -36,6 +37,9 @@ export async function DELETE(req: NextRequest, { params }: { params: { memberId:
         });
 
         const deletePhoto = await deleteFromCloudinary([member.photoPublicId], "image");
+
+        revalidatePath(`${process.env.NEXT_PUBLIC_HOST_URL}/dashboard/admin/members`);
+        revalidatePath(`${process.env.NEXT_PUBLIC_HOST_URL}/about`);
 
         return NextResponse.json({
             success: true,

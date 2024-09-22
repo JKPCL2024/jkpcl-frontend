@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
+import ModalProvider from "@/components/providers/modal-provider";
 
 export const metadata: Metadata = {
     metadataBase: new URL(
@@ -52,6 +53,7 @@ export default async function RootLayout({
                         {children}
                         <Toaster />
                     </ThemeProvider>
+                    <ModalProvider />
                 </body>
             </SessionProvider>
         </html>

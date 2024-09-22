@@ -14,9 +14,9 @@ export function HoverBorderGradient({
         <div className="flex justify-center text-center">
             <GradientButton
                 containerClassName="rounded-full"
-                as="button"
+                as="span"
                 className={cn(
-                    "flex items-center space-x-2 bg-white text-black text-muted-foreground dark:bg-black",
+                    "flex cursor-default items-center space-x-2 bg-white text-black text-muted-foreground dark:bg-black",
                     className
                 )}
             >

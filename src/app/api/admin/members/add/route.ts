@@ -2,6 +2,7 @@ import { currentUser } from "@/lib/auth";
 import { uploadToCloudinary } from "@/lib/cloudinary";
 import { db } from "@/lib/db";
 import { addMemberValidator } from "@/lib/validators/admin/members.validator";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -72,6 +73,9 @@ export async function POST(req: NextRequest) {
 
         // @ts-ignore
         const { secure_url, public_id } = cloudinaryImage.data;
+
+        revalidatePath(`${process.env.NEXT_PUBLIC_HOST_URL}/dashboard/admin/members`);
+        revalidatePath(`${process.env.NEXT_PUBLIC_HOST_URL}/about`);
 
         if (!cloudinaryImage.success) {
             return NextResponse.json({

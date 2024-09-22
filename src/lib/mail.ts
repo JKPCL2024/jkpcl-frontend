@@ -6,7 +6,7 @@ export const sendVerificationEmail = async (
     email: string,
     token: string,
 ) => {
-    const confirmLink = `${process.env.DOMAIN_URL}/auth/new-verification?token=${token}`;
+    const confirmLink = `${process.env.NEXT_PUBLIC_HOST_URL}/auth/new-verification?token=${token}`;
 
     await resend.emails.send({
         from: process.env.RESEND_EMAIL_ID as string,
@@ -21,7 +21,7 @@ export const sendPasswordResetEmail = async (
     email: string,
     token: string,
 ) => {
-    const resetPasswordLink = `${process.env.DOMAIN_URL}/auth/new-password?token=${token}`;
+    const resetPasswordLink = `${process.env.NEXT_PUBLIC_HOST_URL}/auth/new-password?token=${token}`;
 
     await resend.emails.send({
         from: process.env.RESEND_EMAIL_ID as string,

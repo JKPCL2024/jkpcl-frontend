@@ -33,30 +33,29 @@ export default function HeroSection() {
                 growth, we transform livelihoods and benefit over 2000 farmers
                 in the region.
             </P>
-            <Button
+            {/* <Button
                 asChild
                 className="group -translate-y-4 animate-fade-in gap-1 rounded-lg text-white opacity-0 ease-in-out [--animation-delay:600ms] hover:cursor-pointer hover:bg-primary/90"
             >
                 {currentUser ? (
-                    // <Button
-                    //     Icon={ArrowRightIcon}
-                    //     iconPlacement="right"
-                    //     variant={"expandIcon"}
-                    // >
-                    //     <Link
-                    //         href={`/dashboard/${currentUser.role.toLowerCase()}`}
-                    //     >
-                    //         Go to dashboard
-                    //     </Link>
-                    // </Button>
-                <></>
+                    <Button
+                        Icon={ArrowRightIcon}
+                        iconPlacement="right"
+                        variant={"expandIcon"}
+                    >
+                        <Link
+                            href={`/dashboard/${currentUser.role.toLowerCase()}`}
+                        >
+                            Go to dashboard
+                        </Link>
+                    </Button>
                 ) : (
                     <Link href={"/auth/signup"}>
                         <span>Get Started for free </span>
                         <ArrowRightIcon className="ml-1 size-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
                     </Link>
                 )}
-            </Button>
+            </Button> */}
             {/* <div
                 ref={ref}
                 className="relative mt-32 animate-fade-up opacity-0 [--animation-delay:400ms] [perspective:2000px] after:absolute after:inset-0 after:z-50 after:[background:linear-gradient(to_top,hsl(var(--background))_30%,transparent)]"
