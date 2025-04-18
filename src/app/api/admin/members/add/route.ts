@@ -107,11 +107,12 @@ export async function POST(req: NextRequest) {
         }, {
             status: 201
         });
-    } catch (error) {
+    } catch (error: any) {
+        console.error(error);
         return NextResponse.json({
             success: false,
             data: null,
-            message: "Error adding member",
+            message: error.message || "Error adding member",
         }, {
             status: 500
         });

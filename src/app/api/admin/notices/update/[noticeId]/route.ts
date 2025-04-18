@@ -1,24 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
-import { addNoticeValidator } from "@/lib/validators/admin/notice.validator";
+import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { currentUser } from "@/lib/auth";
-import { uploadToCloudinary } from "@/lib/cloudinary";
+import { deleteFromCloudinary, uploadToCloudinary } from "@/lib/cloudinary";
+import { updateNoticeValidator } from "@/lib/validators/admin/notice.validator";
 
 export async function PATCH(req: NextRequest, { params }: { params: { noticeId: string } }) {
-    const noticeId = params.noticeId;
     const formData = await req.formData();
     const title = formData.get("title");
     const file = formData.get("file");
-    const validatedFields = addNoticeValidator.safeParse({
+    const validatedFields = updateNoticeValidator.safeParse({
         title,
-        file,
+        file
     });
 
     if (!validatedFields.success) {
         return NextResponse.json({
             success: false,
             data: null,
-            message: validatedFields.error.message[0],
+            message: validatedFields.error.errors[0].message || "Invalid form data",
+        }, {
+            status: 400
         });
     }
 
@@ -44,45 +46,80 @@ export async function PATCH(req: NextRequest, { params }: { params: { noticeId: 
             });
         }
 
-        const { title, file } = validatedFields.data
+        const { title } = validatedFields.data;
 
-        const cloudinaryImage = await uploadToCloudinary(file, "notices");
 
-        // @ts-ignore
-        const { secure_url, public_id } = cloudinaryImage.data;
+        const existedNotice = await db.notice.findUnique({
+            where: {
+                id: params.noticeId
+            }
+        });
 
-        if (!cloudinaryImage.success) {
+        if (!existedNotice) {
             return NextResponse.json({
                 success: false,
                 data: null,
-                message: cloudinaryImage.message || "Error uploading image",
-
+                message: "Notice not found",
             }, {
-                status: 500
+                status: 404
             });
+
         }
 
-        const notice = await db.notice.create({
+        let cloudinaryImage;
+        let public_id;
+        let secure_url;
+        if (validatedFields.data.file) {
+            cloudinaryImage = await uploadToCloudinary(validatedFields.data.file, "notices");
+            // @ts-ignore
+            public_id = cloudinaryImage.data.public_id;
+            // @ts-ignore
+            secure_url = cloudinaryImage.data.secure_url;
+            if (!cloudinaryImage.success) {
+                return NextResponse.json({
+                    success: false,
+                    data: null,
+                    message: cloudinaryImage.message || "Error uploading image",
+
+                }, {
+                    status: 500
+                });
+            }
+            await deleteFromCloudinary([existedNotice?.url], "image");
+        }
+
+        if (cloudinaryImage) {
+            public_id = existedNotice?.publicId;
+            secure_url = existedNotice?.url;
+        }
+
+        const member = await db.notice.update({
+            where: {
+                id: params.noticeId
+            },
             data: {
                 title,
-                url: secure_url,
-                publicId: public_id,
-                createdBy: user.id,
+                publicId: cloudinaryImage ? public_id : existedNotice?.publicId,
+                url: cloudinaryImage ? secure_url : existedNotice?.url,
             },
         })
 
+
+        revalidatePath("/dashboard/admin/notices");
+        revalidatePath("/");
         return NextResponse.json({
             success: true,
-            data: notice,
-            message: "Notice added successfully",
+            data: member,
+            message: "Notice updated successfully",
         }, {
-            status: 201
+            status: 200
         });
-    } catch (error) {
+    } catch (error: any) {
+        console.error(error);
         return NextResponse.json({
             success: false,
             data: null,
-            message: "Error adding notice",
+            message: error.message || "Error editing notice",
         }, {
             status: 500
         });

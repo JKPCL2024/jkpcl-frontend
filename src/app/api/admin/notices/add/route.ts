@@ -77,11 +77,12 @@ export async function POST(req: NextRequest) {
         }, {
             status: 201
         });
-    } catch (error) {
+    } catch (error: any) {
+        console.log(error)
         return NextResponse.json({
             success: false,
             data: null,
-            message: "Error adding notice",
+            message: error.message || "Error adding notice",
         }, {
             status: 500
         });

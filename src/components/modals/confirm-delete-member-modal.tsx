@@ -11,9 +11,7 @@ import {
     AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogTitle,
-    AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 export function ConfirmDeleteMemberModal() {
@@ -28,9 +26,6 @@ export function ConfirmDeleteMemberModal() {
     };
     return (
         <AlertDialog open={isOpen} onOpenChange={() => closeModal()}>
-            <AlertDialogTrigger asChild>
-                <Button variant="outline">Delete Member</Button>
-            </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>
                     <AlertDialogTitle>
@@ -38,8 +33,7 @@ export function ConfirmDeleteMemberModal() {
                     </AlertDialogTitle>
                     <AlertDialogDescription>
                         This action cannot be undone. This will permanently
-                        delete your account and remove your data from our
-                        servers.
+                        delete this member.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>

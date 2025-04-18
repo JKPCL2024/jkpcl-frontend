@@ -36,7 +36,7 @@ export const NewVerificationForm = () => {
             .catch(() => {
                 toast.error("Something went wrong!");
             });
-    }, [token]);
+    }, [token, router]);
 
     return (
         <div className="flex w-full flex-col items-center justify-center">

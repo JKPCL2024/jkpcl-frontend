@@ -3,11 +3,11 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
     try {
-        const members = await db.member.findMany();
+        const notices = await db.notice.findMany();
         return NextResponse.json({
             success: true,
-            data: members,
-            message: "Members fetched successfully"
+            data: notices,
+            message: "Notices fetched successfully"
         }, {
             status: 200
         });
@@ -16,7 +16,7 @@ export async function GET() {
         return NextResponse.json({
             success: false,
             data: null,
-            message: error?.message
+            message: error?.message || "Failed to fetch notices"
         }, {
             status: 500
         })

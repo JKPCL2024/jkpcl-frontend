@@ -48,11 +48,12 @@ export async function DELETE(req: NextRequest, { params }: { params: { memberId:
         }, {
             status: 200
         });
-    } catch (error) {
+    } catch (error: any) {
+        console.log(error);
         return NextResponse.json({
             success: false,
             data: null,
-            message: "Error adding member",
+            message: error?.message || "Error adding member",
         }, {
             status: 500
         });
